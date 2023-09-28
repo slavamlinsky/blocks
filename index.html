@@ -26,11 +26,9 @@
         flex-wrap: wrap;
         background-color: antiquewhite;
         justify-content: center;
-
-        align-items: center;
       }
 
-      body > div {
+      div {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -42,7 +40,7 @@
         height: 100px;
         transition: 0.1s all linear;
       }
-      body > div:hover {
+      div:hover {
         cursor: pointer;
         transform: scale(1.03);
       }
@@ -50,10 +48,13 @@
   </head>
   <body>
     <script type="text/javascript">
-      const SIZE = 100; // total blocks quantity
+      // total blocks quantity
+      const SIZE = 100;
+      // params for making block shades (from 0 to 255)
       const COLOR_RANDOM = 75;
       const COLOR_SATURATION = 150;
 
+      // function that moves the block
       function move(num) {
         let current = document.getElementById("block" + num);
 
@@ -79,6 +80,7 @@
         }
       }
 
+      // function that creates blocks on page loading
       function generateBlocks(number) {
         for (let i = 0; i < number; i++) {
           var color = Math.floor(Math.random() * COLOR_RANDOM);
