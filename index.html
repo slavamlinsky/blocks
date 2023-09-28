@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blocks - I like to move it move it.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0px;
+        padding: 10px;
+        font-family: "Montserrat", sans-serif;
+        display: inline-flex;
+        flex-wrap: wrap;
+        background-color: antiquewhite;
+        justify-content: center;
+
+        align-items: center;
+      }
+
+      body > div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 2px 5px 3px;
+        border-radius: 15px;
+        min-width: 170px;
+        font-size: 1.125em;
+        color: white;
+        height: 100px;
+      }
+      body > div:hover {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <script type="text/javascript">
+      const SIZE = 100; // total blocks quantity
+      const COLOR_RANDOM = 75;
+      const COLOR_SATURATION = 150;
+
+      function move(num) {
+        let current = document.getElementById("block" + num);
+
+        if (current.getAttribute("moved")) {
+          let next = document.body.firstElementChild;
+
+          if (num === SIZE - 1) {
+            alert("Это последний - ставим его в конец");
+            document.body.append(current);
+          } else {
+            for (let i = 0; i <= num; i++) {
+              next = next.nextElementSibling;
+              while (next.nodeName !== "DIV") {
+                next = next.nextElementSibling;
+              }
+            }
+            current.parentNode.insertBefore(current, next);
+          }
+          current.removeAttribute("moved");
+        } else {
+          current.setAttribute("moved", true);
+
+          current.parentNode.insertBefore(current, document.body.firstChild);
+        }
+      }
+
+      function generateBlocks(number) {
+        for (let i = 0; i < number; i++) {
+          var color = Math.floor(Math.random() * COLOR_RANDOM);
+          var div = document.createElement("div");
+          div.setAttribute("id", "block" + i);
+          div.setAttribute("onClick", "move(" + i + ")");
+
+          div.style.background =
+            "rgb(" +
+            color.toString() +
+            "," +
+            color.toString() +
+            "," +
+            COLOR_SATURATION +
+            ")";
+
+          div.innerHTML = "div " + i;
+          document.body.appendChild(div);
+        }
+      }
+
+      document.body.onload = generateBlocks(SIZE);
+    </script>
+  </body>
+</html>
