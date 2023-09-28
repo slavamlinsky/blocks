@@ -52,6 +52,12 @@
       const COLOR_RANDOM = 75;
       const COLOR_SATURATION = 150;
 
+      document.addEventListener("touch", (event) => {
+        if (e.target.nodeName === "DIV") {
+          move(e.target.id);
+        }
+      });
+
       // general click event handler
       window.onclick = function block(e) {
         if (e.target.nodeName === "DIV") {
@@ -95,8 +101,6 @@
           var color = Math.floor(Math.random() * COLOR_RANDOM);
           var div = document.createElement("div");
           div.setAttribute("id", i);
-          // div.setAttribute("onClick", "move(" + i + ")");
-
           div.style.background =
             "rgb(" +
             color.toString() +
