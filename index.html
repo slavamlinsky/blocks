@@ -52,10 +52,16 @@
       const COLOR_RANDOM = 75;
       const COLOR_SATURATION = 150;
 
+      // general click event handler
+      window.onclick = function block(e) {
+        if (e.target.nodeName === "DIV") {
+          move(e.target.id);
+        }
+      };
+
       // function that moves the block
       function move(num) {
         let current = document.getElementById(num);
-
         if (current.getAttribute("moved")) {
           let next = document.body.firstElementChild;
           while (next.nodeName !== "DIV") {
@@ -90,7 +96,6 @@
           var div = document.createElement("div");
           div.setAttribute("id", i);
           // div.setAttribute("onClick", "move(" + i + ")");
-          div.setAttribute("onClick", "move(" + i + ")");
 
           div.style.background =
             "rgb(" +
