@@ -33,7 +33,7 @@
         justify-content: center;
         margin: 2px 5px 3px;
         border-radius: 15px;
-        min-width: 170px;
+        min-width: max(calc(100% / 11), 170px);
         font-size: 1.125em;
         color: white;
         height: 100px;
@@ -90,7 +90,7 @@
             COLOR_SATURATION +
             ")";
 
-          div.innerHTML = "div " + i;
+          div.innerHTML = "div " + (i + 1);
           document.body.appendChild(div);
         }
       }
