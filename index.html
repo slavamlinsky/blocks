@@ -54,7 +54,7 @@
 
       document.querySelector("body").addEventListener("click", (e) => {
         if (e.target.nodeName === "DIV") {
-          move(e.target.id);
+          move(parseInt(e.target.id));
         }
       });
 
