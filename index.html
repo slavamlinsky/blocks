@@ -52,18 +52,11 @@
       const COLOR_RANDOM = 75;
       const COLOR_SATURATION = 150;
 
-      document.addEventListener("touch", (e) => {
+      document.querySelector("body").addEventListener("click", (e) => {
         if (e.target.nodeName === "DIV") {
           move(e.target.id);
         }
       });
-
-      // general click event handler
-      window.onclick = function block(e) {
-        if (e.target.nodeName === "DIV") {
-          move(e.target.id);
-        }
-      };
 
       // function that moves the block
       function move(num) {
