@@ -54,11 +54,13 @@
 
       // function that moves the block
       function move(num) {
-        let current = document.getElementById("block" + num);
+        let current = document.getElementById(num);
 
         if (current.getAttribute("moved")) {
           let next = document.body.firstElementChild;
-
+          while (next.nodeName !== "DIV") {
+            next = next.nextElementSibling;
+          }
           if (num === SIZE - 1) {
             document.body.append(current);
           } else {
@@ -86,8 +88,10 @@
         for (let i = 0; i < number; i++) {
           var color = Math.floor(Math.random() * COLOR_RANDOM);
           var div = document.createElement("div");
-          div.setAttribute("id", "block" + i);
+          div.setAttribute("id", i);
+          // div.setAttribute("onClick", "move(" + i + ")");
           div.setAttribute("onClick", "move(" + i + ")");
+
           div.style.background =
             "rgb(" +
             color.toString() +
