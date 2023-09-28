@@ -13,7 +13,6 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
       rel="stylesheet"
     />
-
     <style>
       * {
         box-sizing: border-box;
@@ -27,7 +26,6 @@
         background-color: antiquewhite;
         justify-content: center;
       }
-
       div {
         display: flex;
         align-items: center;
@@ -75,8 +73,11 @@
           current.removeAttribute("moved");
         } else {
           current.setAttribute("moved", true);
-
-          current.parentNode.insertBefore(current, document.body.firstChild);
+          let first = document.body.firstElementChild;
+          while (first.nodeName !== "DIV") {
+            first = first.nextElementSibling;
+          }
+          current.parentNode.insertBefore(current, first);
         }
       }
 
@@ -87,7 +88,6 @@
           var div = document.createElement("div");
           div.setAttribute("id", "block" + i);
           div.setAttribute("onClick", "move(" + i + ")");
-
           div.style.background =
             "rgb(" +
             color.toString() +
@@ -96,12 +96,10 @@
             "," +
             COLOR_SATURATION +
             ")";
-
           div.innerHTML = "div " + (i + 1);
           document.body.appendChild(div);
         }
       }
-
       document.body.onload = generateBlocks(SIZE);
     </script>
   </body>
